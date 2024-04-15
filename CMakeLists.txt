@@ -11,6 +11,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
+find_package(Qt6 REQUIRED COMPONENTS Network)
+
 
 set(TS_FILES YDevDesktop_fr_FR.ts)
 
@@ -28,6 +30,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
         chat.qrc
         notentativedialog.h notentativedialog.cpp notentativedialog.ui
+        gamescatalog.h gamescatalog.cpp gamescatalog.ui
 
 
 
@@ -52,6 +55,8 @@ else()
             ${PROJECT_SOURCES}
         )
     endif()
+
+    target_link_libraries(YDevDesktop PRIVATE Qt6::Network)
 
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()

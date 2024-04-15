@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "QMessageBox"
+#include "gamescatalog.h"
 #include "notentativedialog.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -20,9 +21,11 @@ void MainWindow::on_pushButton_clicked()
     QString identifiant = ui->lineEdit_username->text();
     QString password = ui->lineEdit_password->text();
 
-    if(identifiant == "Miniluchi" & password == "2709"){
+    if(identifiant == "Admin" & password == "1234"){
         // Connected
-
+        GamesCatalog *gc = new GamesCatalog();
+        gc->show();
+        close();
     }else{
         // Wrong login
         nbTentative--;
